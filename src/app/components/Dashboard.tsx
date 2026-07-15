@@ -1,20 +1,24 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { 
+import { Card, CardContent, CardHeader } from './ui/card';
+import {
   Users, TrendingUp, Coins, Activity, Plus,
-  Megaphone, Tag, Radio, ArrowUp, ArrowDown
+  Megaphone, ArrowUp
 } from 'lucide-react';
 import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis,
-  CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart
+  CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Label } from './ui/label';
+import { Dialog, DialogContent, DialogHeader } from './ui/dialog';
 import { toast } from 'sonner@2.0.3';
+
+// ── Sellsuki DS 3.0 (Mode B) ──────────────────────────────────────────────
+// Typography → ssk-heading / ssk-text (token-based, >=18px). Actions → ssk-button
+// (themeColor="primary" — the original per-button purple/blue/pink gradients are
+// substituted with the single brand color; DS 3.0 drives color from brand tokens).
+// Stat values use ssk-heading so they stay on the type scale (no hardcoded px).
+// Layout containers (Card/Dialog) are kept as app-level shells; Recharts is kept
+// as-is (no ssk chart equivalent verified yet). Verify ssk-badge/ssk-input props
+// against DS 3.0 Storybook once the MCP is connected.
 
 const memberGrowthData = [
   { month: 'Jan', new: 420, returning: 1250, engagement: 68 },
@@ -51,80 +55,74 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-gray-600">Total Members</CardTitle>
+            <ssk-text variant="label">Total Members</ssk-text>
             <Users className="w-5 h-5 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-gray-900">12,847</div>
+            <ssk-heading level="2">12,847</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
-              <Badge variant="secondary" className="bg-green-50 text-green-700">
-                <ArrowUp className="w-3 h-3 mr-1" />
-                +12.5%
-              </Badge>
-              <span className="text-gray-500">vs last month</span>
+              <ssk-badge themeColor="success">
+                <ArrowUp className="w-3 h-3 mr-1" />+12.5%
+              </ssk-badge>
+              <ssk-text variant="caption">vs last month</ssk-text>
             </div>
-            <div className="mt-3 space-y-1">
-              <div className="flex justify-between text-gray-600">
-                <span>New: 1,050</span>
-                <span>Returning: 2,350</span>
-              </div>
+            <div className="mt-3 flex justify-between">
+              <ssk-text variant="caption">New: 1,050</ssk-text>
+              <ssk-text variant="caption">Returning: 2,350</ssk-text>
             </div>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-gray-600">Active Campaigns</CardTitle>
+            <ssk-text variant="label">Active Campaigns</ssk-text>
             <Megaphone className="w-5 h-5 text-purple-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-gray-900">24</div>
+            <ssk-heading level="2">24</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
-              <Badge variant="secondary" className="bg-blue-50 text-blue-700">
-                8 Upcoming
-              </Badge>
-              <span className="text-gray-500">3 ending soon</span>
+              <ssk-badge themeColor="info">8 Upcoming</ssk-badge>
+              <ssk-text variant="caption">3 ending soon</ssk-text>
             </div>
             <div className="mt-3">
-              <div className="text-gray-600">Avg. Engagement: 78%</div>
+              <ssk-text variant="caption">Avg. Engagement: 78%</ssk-text>
             </div>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-gray-600">Points Overview</CardTitle>
+            <ssk-text variant="label">Points Overview</ssk-text>
             <Coins className="w-5 h-5 text-amber-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-gray-900">2.4M</div>
+            <ssk-heading level="2">2.4M</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
-              <span className="text-green-700">+450K Issued</span>
-              <span className="text-gray-400">|</span>
-              <span className="text-red-700">-280K Burned</span>
+              <ssk-text variant="caption" style={{ color: '#15803D' }}>+450K Issued</ssk-text>
+              <ssk-text variant="caption" style={{ color: '#9CA3AF' }}>|</ssk-text>
+              <ssk-text variant="caption" style={{ color: '#B91C1C' }}>-280K Burned</ssk-text>
             </div>
             <div className="mt-3">
-              <div className="text-gray-600">Active Points: 1.67M</div>
+              <ssk-text variant="caption">Active Points: 1.67M</ssk-text>
             </div>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-gray-600">Engagement Rate</CardTitle>
+            <ssk-text variant="label">Engagement Rate</ssk-text>
             <Activity className="w-5 h-5 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-gray-900">82%</div>
+            <ssk-heading level="2">82%</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
-              <Badge variant="secondary" className="bg-green-50 text-green-700">
-                <ArrowUp className="w-3 h-3 mr-1" />
-                +4.2%
-              </Badge>
-              <span className="text-gray-500">Great!</span>
+              <ssk-badge themeColor="success">
+                <ArrowUp className="w-3 h-3 mr-1" />+4.2%
+              </ssk-badge>
+              <ssk-text variant="caption">Great!</ssk-text>
             </div>
             <div className="mt-3">
-              <div className="text-gray-600">Monthly Active: 9,234</div>
+              <ssk-text variant="caption">Monthly Active: 9,234</ssk-text>
             </div>
           </CardContent>
         </Card>
@@ -133,31 +131,19 @@ export default function Dashboard() {
       {/* Quick Create Buttons */}
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <ssk-heading level="4">Quick Actions</ssk-heading>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3">
-            <Button
-              onClick={() => handleQuickCreate('Campaign')}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              New Campaign
-            </Button>
-            <Button
-              onClick={() => handleQuickCreate('Promotion')}
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              New Promotion
-            </Button>
-            <Button
-              onClick={() => handleQuickCreate('Broadcast')}
-              className="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              New Broadcast
-            </Button>
+            <ssk-button variant="solid" themeColor="primary" onClick={() => handleQuickCreate('Campaign')}>
+              <Plus className="w-4 h-4 mr-2" />New Campaign
+            </ssk-button>
+            <ssk-button variant="solid" themeColor="primary" onClick={() => handleQuickCreate('Promotion')}>
+              <Plus className="w-4 h-4 mr-2" />New Promotion
+            </ssk-button>
+            <ssk-button variant="solid" themeColor="primary" onClick={() => handleQuickCreate('Broadcast')}>
+              <Plus className="w-4 h-4 mr-2" />New Broadcast
+            </ssk-button>
           </div>
         </CardContent>
       </Card>
@@ -166,7 +152,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Member Growth</CardTitle>
+            <ssk-heading level="4">Member Growth</ssk-heading>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -185,7 +171,7 @@ export default function Dashboard() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Campaign Engagement Rate</CardTitle>
+            <ssk-heading level="4">Campaign Engagement Rate</ssk-heading>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -212,7 +198,7 @@ export default function Dashboard() {
       {/* Recent Activities */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activities</CardTitle>
+          <ssk-heading level="4">Recent Activities</ssk-heading>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -235,10 +221,10 @@ export default function Dashboard() {
                   {activity.type === 'upgrade' && <ArrowUp className="w-5 h-5" />}
                 </div>
                 <div className="flex-1">
-                  <div className="text-gray-900">{activity.user}</div>
-                  <div className="text-gray-600">{activity.action}</div>
+                  <ssk-text variant="body" style={{ display: 'block' }}>{activity.user}</ssk-text>
+                  <ssk-text variant="caption" style={{ display: 'block' }}>{activity.action}</ssk-text>
                 </div>
-                <div className="text-gray-500">{activity.time}</div>
+                <ssk-text variant="caption">{activity.time}</ssk-text>
               </div>
             ))}
           </div>
@@ -249,22 +235,23 @@ export default function Dashboard() {
       <Dialog open={!!createDialog} onOpenChange={() => setCreateDialog(null)}>
         <DialogContent aria-describedby={undefined}>
           <DialogHeader>
-            <DialogTitle>Create New {createDialog}</DialogTitle>
+            <ssk-heading level="4">Create New {createDialog}</ssk-heading>
           </DialogHeader>
           <div className="space-y-4">
-            <div>
-              <Label>Name</Label>
-              <Input placeholder={`${createDialog} name`} />
-            </div>
-            <div>
-              <Label>Description</Label>
-              <Textarea placeholder={`Describe your ${createDialog?.toLowerCase()}`} rows={3} />
-            </div>
+            <ssk-input label="Name" placeholder={`${createDialog} name`} />
+            <ssk-input
+              label="Description"
+              multiline
+              rows={3}
+              placeholder={`Describe your ${createDialog?.toLowerCase()}`}
+            />
             <div className="flex gap-3 justify-end">
-              <Button variant="outline" onClick={() => setCreateDialog(null)}>
+              <ssk-button variant="outline" onClick={() => setCreateDialog(null)}>
                 Cancel
-              </Button>
-              <Button onClick={handleCreate}>Create {createDialog}</Button>
+              </ssk-button>
+              <ssk-button variant="solid" themeColor="primary" onClick={handleCreate}>
+                Create {createDialog}
+              </ssk-button>
             </div>
           </div>
         </DialogContent>

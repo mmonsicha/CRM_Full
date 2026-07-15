@@ -8,6 +8,7 @@
     "dev": "vite"
   },
   "dependencies": {
+    "@uxuissk/design-system-core": "^3.5.12",
     "@emotion/react": "11.14.0",
     "@emotion/react@11.14.0": "npm:@emotion/react@11.14.0",
     "@emotion/styled": "11.14.1",

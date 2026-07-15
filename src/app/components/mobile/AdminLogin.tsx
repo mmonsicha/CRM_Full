@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader } from '../ui/card';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
-import { Checkbox } from '../ui/checkbox';
 import { AlertCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { toast } from 'sonner@2.0.3';
+
+// ── Sellsuki DS 3.0 (Mode B) ──────────────────────────────────────────────
+// Converted to ssk-* components. Typography comes from ssk-heading / ssk-text
+// (token-based, always >=18px per DB HeaventRounded readability rule), the
+// brand blue comes from ssk-button themeColor="primary" — no hardcoded hex.
+// ssk-* are web components, so form values are read from the native `input`
+// event (e.target.value / e.target.checked). Verify exact prop/event names
+// against DS 3.0 Storybook once the MCP is connected.
 
 interface AdminLoginProps {
   onLoginSuccess: () => void;
@@ -21,7 +24,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
 
   const handleLogin = async () => {
     setError('');
-    
+
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
@@ -54,19 +57,20 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
           <div className="w-20 h-20 bg-gradient-to-br from-[#007AFF] to-[#0051D5] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
             <span className="text-white text-3xl">C</span>
           </div>
-          <h1 className="text-gray-900 mb-2">CRM Master 2.0</h1>
-          <p className="text-gray-600">Admin Portal</p>
+          <ssk-heading level="1">CRM Master 2.0</ssk-heading>
+          <ssk-text variant="body">Admin Portal</ssk-text>
         </div>
 
         {/* Login Card */}
-        <Card className="shadow-xl border-0">
-          <CardHeader className="bg-gradient-to-r from-[#007AFF] to-[#0051D5] text-white rounded-t-xl">
-            <h2 className="text-white text-center">Administrator Login</h2>
-            <p className="text-blue-100 text-sm text-center mt-1">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="bg-gradient-to-r from-[#007AFF] to-[#0051D5] text-white p-6 text-center">
+            <ssk-heading level="4" style={{ color: '#fff' }}>Administrator Login</ssk-heading>
+            <ssk-text variant="caption" style={{ color: '#DCEBFF' }}>
               Enter your credentials to access the system
-            </p>
-          </CardHeader>
-          <CardContent className="pt-6 space-y-6">
+            </ssk-text>
+          </div>
+
+          <div className="p-6 space-y-6">
             {/* Error Message */}
             {error && (
               <motion.div
@@ -75,85 +79,77 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
                 className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700"
               >
                 <AlertCircle className="w-4 h-4" />
-                <p className="text-sm">{error}</p>
+                <ssk-text variant="caption" style={{ color: '#B91C1C' }}>{error}</ssk-text>
               </motion.div>
             )}
 
             {/* Email Field */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
-              <Input
+              <ssk-input
                 id="email"
                 type="email"
+                label="Email Address"
                 placeholder="Enter your admin email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
-                className="h-12"
+                onInput={(e: any) => setEmail(e.target.value)}
+                onKeyPress={(e: any) => e.key === 'Enter' && handleLogin()}
               />
             </div>
 
             {/* Password Field */}
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
+              <ssk-input
                 id="password"
                 type="password"
+                label="Password"
                 placeholder="Enter your password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
-                className="h-12"
+                onInput={(e: any) => setPassword(e.target.value)}
+                onKeyPress={(e: any) => e.key === 'Enter' && handleLogin()}
               />
             </div>
 
             {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Checkbox 
-                  checked={rememberMe} 
-                  onCheckedChange={(checked) => setRememberMe(checked as boolean)}
-                />
-                <Label className="text-sm text-gray-600 cursor-pointer">
-                  Remember me
-                </Label>
-              </div>
-              <button className="text-sm text-[#007AFF] hover:underline">
+              <ssk-checkbox
+                checked={rememberMe}
+                onChange={(e: any) => setRememberMe(!!e.target.checked)}
+              >
+                Remember me
+              </ssk-checkbox>
+              <ssk-button variant="text" themeColor="primary">
                 Forgot Password?
-              </button>
+              </ssk-button>
             </div>
 
             {/* Login Button */}
-            <Button
+            <ssk-button
+              variant="solid"
+              themeColor="primary"
+              disabled={isLoading || undefined}
+              style={{ width: '100%' }}
               onClick={handleLogin}
-              disabled={isLoading}
-              className="w-full h-12 bg-[#007AFF] hover:bg-[#0051D5] text-white"
             >
-              {isLoading ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Logging in...</span>
-                </div>
-              ) : (
-                'Login'
-              )}
-            </Button>
+              {isLoading ? 'Logging in...' : 'Login'}
+            </ssk-button>
 
             {/* Demo Credentials */}
             <div className="pt-4 border-t">
-              <p className="text-xs text-gray-500 text-center mb-2">Demo Credentials:</p>
+              <ssk-text variant="caption" style={{ display: 'block', textAlign: 'center', marginBottom: 8 }}>
+                Demo Credentials:
+              </ssk-text>
               <div className="bg-gray-50 p-3 rounded-lg">
-                <p className="text-xs text-gray-600">Email: <strong>admin@crm.com</strong></p>
-                <p className="text-xs text-gray-600">Password: <strong>admin123</strong></p>
+                <ssk-text variant="caption" style={{ display: 'block' }}>Email: <strong>admin@crm.com</strong></ssk-text>
+                <ssk-text variant="caption" style={{ display: 'block' }}>Password: <strong>admin123</strong></ssk-text>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Footer */}
-        <p className="text-center text-gray-500 text-sm mt-6">
-          © 2024 CRM Master. All rights reserved.
-        </p>
+        <div className="text-center mt-6">
+          <ssk-text variant="caption">© 2024 CRM Master. All rights reserved.</ssk-text>
+        </div>
       </motion.div>
     </div>
   );
