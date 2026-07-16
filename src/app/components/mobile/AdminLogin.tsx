@@ -58,14 +58,14 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
             <span className="text-white text-3xl">C</span>
           </div>
           <ssk-heading level="1">CRM Master 2.0</ssk-heading>
-          <ssk-text variant="body">Admin Portal</ssk-text>
+          <ssk-heading level="4">Admin Portal</ssk-heading>
         </div>
 
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="bg-gradient-to-r from-[#007AFF] to-[#0051D5] text-white p-6 text-center">
-            <ssk-heading level="4" style={{ color: '#fff' }}>Administrator Login</ssk-heading>
-            <ssk-text variant="caption" style={{ color: '#DCEBFF' }}>
+            <ssk-heading level="3" style={{ color: '#fff' }}>Administrator Login</ssk-heading>
+            <ssk-text variant="body" style={{ color: '#DCEBFF' }}>
               Enter your credentials to access the system
             </ssk-text>
           </div>
@@ -79,7 +79,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
                 className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700"
               >
                 <AlertCircle className="w-4 h-4" />
-                <ssk-text variant="caption" style={{ color: '#B91C1C' }}>{error}</ssk-text>
+                <ssk-text variant="body" style={{ color: '#B91C1C' }}>{error}</ssk-text>
               </motion.div>
             )}
 
@@ -135,12 +135,12 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
 
             {/* Demo Credentials */}
             <div className="pt-4 border-t">
-              <ssk-text variant="caption" style={{ display: 'block', textAlign: 'center', marginBottom: 8 }}>
+              <ssk-text variant="body" style={{ display: 'block', textAlign: 'center', marginBottom: 8 }}>
                 Demo Credentials:
               </ssk-text>
               <div className="bg-gray-50 p-3 rounded-lg">
-                <ssk-text variant="caption" style={{ display: 'block' }}>Email: <strong>admin@crm.com</strong></ssk-text>
-                <ssk-text variant="caption" style={{ display: 'block' }}>Password: <strong>admin123</strong></ssk-text>
+                <ssk-text variant="body" style={{ display: 'block' }}>Email: <strong>admin@crm.com</strong></ssk-text>
+                <ssk-text variant="body" style={{ display: 'block' }}>Password: <strong>admin123</strong></ssk-text>
               </div>
             </div>
           </div>
@@ -148,7 +148,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
 
         {/* Footer */}
         <div className="text-center mt-6">
-          <ssk-text variant="caption">© 2024 CRM Master. All rights reserved.</ssk-text>
+          <ssk-text variant="body">© 2024 CRM Master. All rights reserved.</ssk-text>
         </div>
       </motion.div>
     </div>

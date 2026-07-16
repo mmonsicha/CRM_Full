@@ -55,74 +55,74 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <ssk-text variant="label">Total Members</ssk-text>
+            <ssk-heading level="4">Total Members</ssk-heading>
             <Users className="w-5 h-5 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <ssk-heading level="2">12,847</ssk-heading>
+            <ssk-heading level="1">12,847</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
               <ssk-badge themeColor="success">
                 <ArrowUp className="w-3 h-3 mr-1" />+12.5%
               </ssk-badge>
-              <ssk-text variant="caption">vs last month</ssk-text>
+              <ssk-text variant="body">vs last month</ssk-text>
             </div>
             <div className="mt-3 flex justify-between">
-              <ssk-text variant="caption">New: 1,050</ssk-text>
-              <ssk-text variant="caption">Returning: 2,350</ssk-text>
+              <ssk-text variant="body">New: 1,050</ssk-text>
+              <ssk-text variant="body">Returning: 2,350</ssk-text>
             </div>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <ssk-text variant="label">Active Campaigns</ssk-text>
+            <ssk-heading level="4">Active Campaigns</ssk-heading>
             <Megaphone className="w-5 h-5 text-purple-600" />
           </CardHeader>
           <CardContent>
-            <ssk-heading level="2">24</ssk-heading>
+            <ssk-heading level="1">24</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
               <ssk-badge themeColor="info">8 Upcoming</ssk-badge>
-              <ssk-text variant="caption">3 ending soon</ssk-text>
+              <ssk-text variant="body">3 ending soon</ssk-text>
             </div>
             <div className="mt-3">
-              <ssk-text variant="caption">Avg. Engagement: 78%</ssk-text>
+              <ssk-text variant="body">Avg. Engagement: 78%</ssk-text>
             </div>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <ssk-text variant="label">Points Overview</ssk-text>
+            <ssk-heading level="4">Points Overview</ssk-heading>
             <Coins className="w-5 h-5 text-amber-600" />
           </CardHeader>
           <CardContent>
-            <ssk-heading level="2">2.4M</ssk-heading>
+            <ssk-heading level="1">2.4M</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
-              <ssk-text variant="caption" style={{ color: '#15803D' }}>+450K Issued</ssk-text>
-              <ssk-text variant="caption" style={{ color: '#9CA3AF' }}>|</ssk-text>
-              <ssk-text variant="caption" style={{ color: '#B91C1C' }}>-280K Burned</ssk-text>
+              <ssk-text variant="body" style={{ color: '#15803D' }}>+450K Issued</ssk-text>
+              <ssk-text variant="body" style={{ color: '#9CA3AF' }}>|</ssk-text>
+              <ssk-text variant="body" style={{ color: '#B91C1C' }}>-280K Burned</ssk-text>
             </div>
             <div className="mt-3">
-              <ssk-text variant="caption">Active Points: 1.67M</ssk-text>
+              <ssk-text variant="body">Active Points: 1.67M</ssk-text>
             </div>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <ssk-text variant="label">Engagement Rate</ssk-text>
+            <ssk-heading level="4">Engagement Rate</ssk-heading>
             <Activity className="w-5 h-5 text-green-600" />
           </CardHeader>
           <CardContent>
-            <ssk-heading level="2">82%</ssk-heading>
+            <ssk-heading level="1">82%</ssk-heading>
             <div className="flex items-center gap-2 mt-2">
               <ssk-badge themeColor="success">
                 <ArrowUp className="w-3 h-3 mr-1" />+4.2%
               </ssk-badge>
-              <ssk-text variant="caption">Great!</ssk-text>
+              <ssk-text variant="body">Great!</ssk-text>
             </div>
             <div className="mt-3">
-              <ssk-text variant="caption">Monthly Active: 9,234</ssk-text>
+              <ssk-text variant="body">Monthly Active: 9,234</ssk-text>
             </div>
           </CardContent>
         </Card>
@@ -131,7 +131,7 @@ export default function Dashboard() {
       {/* Quick Create Buttons */}
       <Card>
         <CardHeader>
-          <ssk-heading level="4">Quick Actions</ssk-heading>
+          <ssk-heading level="3">Quick Actions</ssk-heading>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3">
@@ -152,7 +152,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <ssk-heading level="4">Member Growth</ssk-heading>
+            <ssk-heading level="3">Member Growth</ssk-heading>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -171,7 +171,7 @@ export default function Dashboard() {
 
         <Card>
           <CardHeader>
-            <ssk-heading level="4">Campaign Engagement Rate</ssk-heading>
+            <ssk-heading level="3">Campaign Engagement Rate</ssk-heading>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -198,7 +198,7 @@ export default function Dashboard() {
       {/* Recent Activities */}
       <Card>
         <CardHeader>
-          <ssk-heading level="4">Recent Activities</ssk-heading>
+          <ssk-heading level="3">Recent Activities</ssk-heading>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -221,10 +221,10 @@ export default function Dashboard() {
                   {activity.type === 'upgrade' && <ArrowUp className="w-5 h-5" />}
                 </div>
                 <div className="flex-1">
-                  <ssk-text variant="body" style={{ display: 'block' }}>{activity.user}</ssk-text>
-                  <ssk-text variant="caption" style={{ display: 'block' }}>{activity.action}</ssk-text>
+                  <ssk-heading level="4" style={{ display: 'block' }}>{activity.user}</ssk-heading>
+                  <ssk-text variant="body" style={{ display: 'block' }}>{activity.action}</ssk-text>
                 </div>
-                <ssk-text variant="caption">{activity.time}</ssk-text>
+                <ssk-text variant="body">{activity.time}</ssk-text>
               </div>
             ))}
           </div>
@@ -235,7 +235,7 @@ export default function Dashboard() {
       <Dialog open={!!createDialog} onOpenChange={() => setCreateDialog(null)}>
         <DialogContent aria-describedby={undefined}>
           <DialogHeader>
-            <ssk-heading level="4">Create New {createDialog}</ssk-heading>
+            <ssk-heading level="3">Create New {createDialog}</ssk-heading>
           </DialogHeader>
           <div className="space-y-4">
             <ssk-input label="Name" placeholder={`${createDialog} name`} />
